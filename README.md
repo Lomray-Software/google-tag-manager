@@ -1,4 +1,6 @@
-<h1 align='center'>Google Tag Manager for React</h1>
+<h1 align='center'>Google Tag Manager service</h1>
+
+<h2 align='center'>Supports any popular frontend framework</h2>
 
 <p align="center">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=google-tag-manager&metric=reliability_rating" alt="reliability">

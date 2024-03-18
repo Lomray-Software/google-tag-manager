@@ -1,7 +1,7 @@
 {
   "name": "@lomray/google-tag-manager",
   "version": "1.0.0",
-  "description": "Google Tag manager for React.",
+  "description": "Google Tag manager service.",
   "type": "module",
   "keywords": [
     "js",
