@@ -2,6 +2,7 @@ interface IGoogleTagManagerInit {
   gtmId: string;
   // improve lighthouse performance (3000 ms)
   initDelay?: number;
+  skipNoscript?: boolean; // e.g. custom inserting
 }
 
 declare global {
@@ -25,7 +26,7 @@ class GoogleTagManager {
   /**
    * Initialize gtm module on page
    */
-  public init({ gtmId, initDelay = 0 }: IGoogleTagManagerInit): void {
+  public init({ gtmId, initDelay = 0, skipNoscript = false }: IGoogleTagManagerInit): void {
     const script = document.createElement('script');
 
     script.type = 'text/javascript';
@@ -41,20 +42,28 @@ class GoogleTagManager {
     };
     script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}&gtm_cookies_win=x`;
 
-    const iframe = `
-      <iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}&gtm_cookies_win=x"
-        height="0" width="0" style="display:none;visibility:hidden" id="tag-manager"></iframe>`;
+    const iframe = document.createElement('iframe');
+
+    iframe.src = `https://www.googletagmanager.com/ns.html?id=${gtmId}&gtm_cookies_win=x`;
+    iframe.height = '0';
+    iframe.width = '0';
+    iframe.style.display = 'none';
+    iframe.style.visibility = 'hidden';
+    iframe.id = 'tag-manager';
     const noscript = document.createElement('noscript');
 
-    noscript.innerHTML = iframe;
+    noscript.appendChild(iframe);
 
-    const init = () => {
+    const init = (): void => {
       if (this.isInitialized) {
         return;
       }
 
       document.head.appendChild(script);
-      document.body.insertBefore(noscript, document.body.childNodes[0]);
+
+      if (!skipNoscript) {
+        document.body.insertBefore(noscript, document.body.childNodes[0]);
+      }
 
       this.isInitialized = true;
     };
