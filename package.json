@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Google Tag manager service.",
   "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "js",
     "google",
