@@ -27,6 +27,10 @@ class GoogleTagManager {
    * Initialize gtm module on page
    */
   public init({ gtmId, initDelay = 0, skipNoscript = false }: IGoogleTagManagerInit): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     const script = document.createElement('script');
 
     script.type = 'text/javascript';
