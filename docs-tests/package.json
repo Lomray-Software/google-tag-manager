@@ -1,0 +1,16 @@
+{
+  "name": "google-tag-manager-docs-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node check.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1",
+    "esbuild": "0.25.10",
+    "typescript": "5.9.2",
+    "@types/node": "22.18.6",
+    "@lomray/google-tag-manager": "1.0.4",
+    "jsdom": "26.1.0"
+  }
+}
